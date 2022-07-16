@@ -1,25 +1,34 @@
-//Peluqueria//
-const nombre =prompt("ingrese su nombre")
-let precio = 0
-alert("hola " + nombre + " bienvenido a la peluqueria de Don Mateo")
-
-let corte = prompt("Ingrese que tipo de corte quiere (opcion 1:Corte de Hombre, Opcion 2:Corte de Mujer")
-
-while(corte !=1 && corte != 2) {
-    alert("el corte no existe")
-    corte = prompt("Ingrese que tipo de corte quiere (opcion 1:Corte de Hombre, Opcion 2:Corte de Mujer")
+//////////////// Desafio 4 simulador interactivo///////////////////
+class Productos{
+    constructor(nombre,precio,stock){
+        this.nombre = nombre.toUpperCase()
+        this.precio = precio
+        this.stock = stock
+    }
+    imprimir(objeto){
+        for(const clave in objeto){
+            alert(`${clave} : ${objeto[clave]}`)
+        }
+    }
 }
-if(corte == 1 ){
-    precio = 500
-}else {
-    precio = 900
-}
-alert ("El precio del corte es "+ precio)
 
-let dinero = prompt("Con cuanto va a pagar")
-while(dinero < precio) {
-    alert("El pago es insuficiente")
-    dinero = prompt("Con cuanto va a pagar")
+
+const listaProductos = [
+    {nombre: "Mochila", precio: 2000,stock: 3}
+]
+
+const agregarProd = () => {
+    let nombre = prompt("Nombre del producto");
+    let precio = parseFloat(prompt("Precio del producto"));
+    let stock = parseInt(prompt("Cuanto de stock tienes?"));
+    let prod = new Productos(nombre,precio,stock);
+    listaProductos.push(prod);
+    console.log(listaProductos);
 }
-let vuelto = dinero - precio
-alert("Su pago es de "+ precio + " y su cambio es "+ vuelto)
+
+agregarProd()
+
+for( producto of listaProductos) {
+    alert(`Este producto es ${producto.nombre}, su precio es ${producto.precio} y tiene de stock ${producto.stock}`)
+}
+
